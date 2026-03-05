@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://blv6dmt6vo4ih"]
+
+[ext_resource type="PackedScene" uid="uid://bguxms18cue54" path="res://Weapons/hitscan_weapon.tscn" id="1_te1r4"]
+[ext_resource type="PackedScene" uid="uid://cuys6kbxr6vn5" path="res://Weapons/Rifle.glb" id="2_te1r4"]
+[ext_resource type="AudioStream" uid="uid://dv3btyigxu14u" path="res://Assets/Audio/SFX - Rifle.mp3" id="3_ul1sp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ops1r"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="Curve" id="Curve_i2xpi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_54bti"]
+curve = SubResource("Curve_i2xpi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hpifs"]
+direction = Vector3(0, 0, -1)
+spread = 8.0
+initial_velocity_min = 6.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_54bti")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gnaxn"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Rifle" unique_id=973313951 node_paths=PackedStringArray("weapon_mesh", "muzzle_flash") instance=ExtResource("1_te1r4")]
+fire_rate = 8.0
+recoil = 0.3
+weapon_mesh = NodePath("Rifle")
+weapon_damage = 70
+muzzle_flash = NodePath("MuzzleFlash")
+
+[node name="MuzzleFlash" type="GPUParticles3D" parent="." index="2" unique_id=547620230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.3495852, -3.2)
+layers = 2
+material_override = SubResource("StandardMaterial3D_ops1r")
+cast_shadow = 0
+emitting = false
+lifetime = 0.06999999999999999
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_hpifs")
+draw_pass_1 = SubResource("BoxMesh_gnaxn")
+
+[node name="Rifle" parent="." index="3" unique_id=1559277030 instance=ExtResource("2_te1r4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.35, -1.8)
+
+[node name="Part_104" parent="Rifle" index="0" unique_id=1921158538]
+layers = 2
+
+[node name="Gun butt_018" parent="Rifle" index="1" unique_id=1554538066]
+layers = 2
+
+[node name="Part_106" parent="Rifle" index="2" unique_id=608617516]
+layers = 2
+
+[node name="Grip_027" parent="Rifle" index="3" unique_id=1295343721]
+layers = 2
+
+[node name="Part_108" parent="Rifle" index="4" unique_id=1988133070]
+layers = 2
+
+[node name="Scope_022" parent="Rifle" index="5" unique_id=531636843]
+layers = 2
+
+[node name="Scope_023" parent="Rifle" index="6" unique_id=500713763]
+layers = 2
+
+[node name="Extra accessories_008" parent="Rifle" index="7" unique_id=1666236395]
+layers = 2
+
+[node name="Part_112" parent="Rifle" index="8" unique_id=1881335474]
+layers = 2
+
+[node name="Part_113" parent="Rifle" index="9" unique_id=989509254]
+layers = 2
+
+[node name="Muzzle breaks" parent="Rifle" index="10" unique_id=325063689]
+layers = 2
+
+[node name="RifleFire" type="AudioStreamPlayer" parent="." index="4" unique_id=889131010]
+stream = ExtResource("3_ul1sp")
+volume_db = -10.0
+
+[editable path="Rifle"]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b8hacchi1gfjx"]
+
+[ext_resource type="Script" uid="uid://bvayefumbt5ga" path="res://finish_platform.gd" id="1_s42y0"]
+[ext_resource type="Material" uid="uid://b0yh1b1tiuqhh" path="res://Levels/Materials/OrangeMaterial.tres" id="2_jxja4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_l8sqq"]
+material = ExtResource("2_jxja4")
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_aw3of"]
+data = PackedVector3Array(-1, 0.25, 1, 1, 0.25, 1, -1, -0.25, 1, 1, 0.25, 1, 1, -0.25, 1, -1, -0.25, 1, 1, 0.25, -1, -1, 0.25, -1, 1, -0.25, -1, -1, 0.25, -1, -1, -0.25, -1, 1, -0.25, -1, 1, 0.25, 1, 1, 0.25, -1, 1, -0.25, 1, 1, 0.25, -1, 1, -0.25, -1, 1, -0.25, 1, -1, 0.25, -1, -1, 0.25, 1, -1, -0.25, -1, -1, 0.25, 1, -1, -0.25, 1, -1, -0.25, -1, 1, 0.25, 1, -1, 0.25, 1, 1, 0.25, -1, -1, 0.25, 1, -1, 0.25, -1, 1, 0.25, -1, -1, -0.25, 1, 1, -0.25, 1, -1, -0.25, -1, 1, -0.25, 1, 1, -0.25, -1, -1, -0.25, -1)
+
+[node name="FinishPlatform" type="Area3D" unique_id=1291386418]
+script = ExtResource("1_s42y0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=719379739]
+mesh = SubResource("BoxMesh_l8sqq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1153019018]
+shape = SubResource("ConcavePolygonShape3D_aw3of")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
